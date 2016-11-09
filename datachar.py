@@ -1,14 +1,16 @@
 import numpy as np
 from scipy.misc import imread,imresize,imshow
-import cPickle
 import os
+
+''' this script reads the dataset downloaded pre-processes it and converts it into suitable binary format'''
+    		
 
 k=1
 j=1
 
 for m in xrange(62):
 	if(j<10):
-		path = "/home/rishabh/Documents/English/Img/GoodImg/Bmp/Sample00"+str(j)
+		path = "/home/rishabh/Documents/English/Img/GoodImg/Bmp/Sample00"+str(j)# change the path
 		
 	elif(j >9):
 		path = "/home/rishabh/Documents/English/Img/GoodImg/Bmp/Sample0"+str(j)
@@ -40,11 +42,11 @@ for m in xrange(62):
 
 
 		k=k+1
-		img_mean = np.mean(img)
+		img_mean = np.mean(img)#Mean center image
 		img = img - img_mean
-		img /= np.std(img)
+		img /= np.std(img)#Normalize each image
 		gray_img = np.zeros(((img.shape[0],img.shape[1],3)))
-		if(len(img.shape)  == 2):
+		if(len(img.shape)  == 2):#take care of gray scale images in the data base
 			gray_img[:,:,0] = img
 			img = gray_img
 				
@@ -55,10 +57,3 @@ for m in xrange(62):
 	f = file("/home/rishabh/Desktop/TensorFlow/Datachar/label"+str(j)+".bin","wb")
 	np.save(f,sample001)
 	j=j+1
-
-
-
-f = file("/home/rishabh/Desktop/TensorFlow/Datachar/label62.bin","rb")
-a=np.load(f)
-
-imshow(a[7].reshape(32,32,3))
