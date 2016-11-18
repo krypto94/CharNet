@@ -127,7 +127,7 @@ L=1e-3#Learning Rate
 flag = 0
 G=20# Decay Learning rate by 10 folds after G epochs
 for i in xrange(70000):
-	sess.run(train_step,feed_dict={x:data[k:k+batch_size],y:labels[k:k+batch_size],keep_prob : 0.5,learning_rate:L,keep_prob_pool1:1.0,keep_prob_pool2:0.8})
+	sess.run(train_step,feed_dict={x:data_train[k:k+batch_size],y:labels_train[k:k+batch_size],keep_prob : 0.5,learning_rate:L,keep_prob_pool1:1.0,keep_prob_pool2:0.8})
 	if(i%100 == 0):
 		train_accuracy = accuracy.eval(feed_dict={x:train_data[k:k+batch_size], y:train_labels[k:k+batch_size],keep_prob:1.0,learning_rate:L,keep_prob_pool1:1.0,keep_prob_pool2:1.0})
 		print("step %d, training accuracy%g\n"%(i, train_accuracy))
