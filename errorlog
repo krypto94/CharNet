@@ -1,0 +1,33 @@
+import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
+
+
+public class errorLogger {
+void fileDump(ArrayList<String> records,Path path)
+{
+
+	try {
+		Files.write(path,records,Charset.forName("UTF-8"));
+	} catch (IOException e){
+		e.printStackTrace();
+	}
+}
+void recordDump(String record, Path path)
+{
+	ArrayList<String> temp = new ArrayList<String>();
+	temp.add(record);
+	System.out.println(record);
+	
+	try {
+		Files.write(path,temp,Charset.forName("UTF-8"),StandardOpenOption.APPEND);
+	} catch (IOException e){
+		e.printStackTrace();
+	}
+	
+	
+}
+}
