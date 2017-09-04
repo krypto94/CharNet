@@ -20,110 +20,107 @@ a Periodic transactions, and thus they can be used for catching anomalies such a
 in a given tranction.
 '''
 
-df=pd.read_csv("/home/rishabh/Desktop/DeepLearning/keras/Nucleus/dataset.csv")
+df=pd.read_csv("/home/rishabh/Desktop/DeepLearning/keras/Nucleus/dataset_sin.csv",header = None)
 temp = df.as_matrix()
-dataset = np.empty((temp.shape[0],temp.shape[1]))
+temp =temp.astype(int)
+dataset = np.empty((temp.shape[0],temp.shape[1]+1+1))
 ############################################################################################
 # date = np.empty((20000,1))
 # flg = 0
-# date[0,0] = 1
-# for i in range(7000):
+# for i in range(5000):
 	
-# 	date1 = 21 + np.random.randint(8)
-# 	date2 = np.random.randint(1,14)
-# 	# date3 = np.random.randint(24,31)
-# 	date4 = np.random.randint(14,17)
-# 	date[flg+1,0] = date2
+# 	date1 = 20 + np.random.randint(8)
+# 	date2 = np.random.randint(1,5)
+# 	date3 = np.random.randint(5,10)
+# 	date4 = np.random.randint(10,18)
+# 	date[flg+0,0] = date2
+# 	date[flg+1,0] = date3
 # 	date[flg+2,0] = date4
 # 	date[flg+3,0] = date1
-# 	date[flg+4,0] = date2
-# 	flg = flg + 3
+# 	flg = flg + 4
 # 	if(flg == 19998):
 # 		break	 
-# date[19996,0] = 6
-# date[19997,0] = 15
-# date[19998,0] = 24
-# date[19999,0] = 3
-
-# dataset[:,:10] = temp
-# dataset[:,0] = date.T
-
-# df1 = pd.DataFrame(dataset)
-# df1.to_csv("/home/rishabh/Desktop/DeepLearning/keras/Nucleus/dataset.csv",index = False)
-##################### DATE GENERATOR ######################################################
+# # date[19996,0] = 6
+# # date[19997,0] = 15
+# # date[19998,0] = 24
+# # date[19999,0] = 3
+# df1 = pd.DataFrame(date)
+# df1.to_csv("/home/rishabh/Desktop/DeepLearning/keras/Nucleus/dataset_sin.csv",index = False,header = False)
+# ##################### date generator ######################################################
 
 ###########################################################################################
 # job = np.zeros((20000,4))
+# flg=0
 # for i in range(20000):
-# 	rand = np.random.randint(3)
-# 	if(i%3 == 0):
-# 		job[i,3] = 1
-# 	else:
-# 		job[i,rand] = 1
+# 	job[i,flg ] = 1
+# 	flg = flg +1
+# 	if(flg == 4):
+# 		flg = 0
 # dataset[:,0] = temp.T
 # dataset[:,1:5] = job
 # df1 = pd.DataFrame(dataset)
-# df1.to_csv("/home/rishabh/Desktop/DeepLearning/keras/Nucleus/dataset.csv",index = False)
+# df1.to_csv("/home/rishabh/Desktop/DeepLearning/keras/Nucleus/dataset_sin.csv",index = False,header=False)
 ##################### JOB GENERATOR #######################################################
 
 ###########################################################################################
 # MODE = np.zeros((20000,4))
+# flg=0
 # for i in range(20000):
-# 	rand = np.random.randint(3)
-# 	if(i%3 == 0):
-# 		MODE[i,3] = 1
-# 	else:
-# 		MODE[i,rand] = 1
+# 	MODE[i,flg ] = 1
+# 	flg = flg +1
+# 	if(flg == 4):
+# 		flg = 0
+	
 # dataset[:,:5] = temp
 # dataset[:,5:9] = MODE
 # df1 = pd.DataFrame(dataset)
-# df1.to_csv("/home/rishabh/Desktop/DeepLearning/keras/Nucleus/dataset.csv",index = False)
+# df1.to_csv("/home/rishabh/Desktop/DeepLearning/keras/Nucleus/dataset_sin.csv",index = False)
 ##################### MODE GENERATOR ######################################################
 
 ###########################################################################################
-# AMOUNT = np.zeros((20000,1))
-# for i in range(20000):
-# 	rand = np.random.randint(200,300)
-# 	rand2 = np.random.randint(10,150)
-# 	rand3 = np.random.randint(350,450)
-# 	if(i%3 == 0):
-# 		AMOUNT[i,0] = rand
-# 	elif(i%7 == 0):
-# 		AMOUNT[i,0] = rand2
-# 	else:
-# 		AMOUNT[i,0] = rand3	
+# amount = np.zeros((20000,1))
+# flg = 0
+# for i in range(5000):
+# 	a=np.random.rand(1)
+# 	amount[flg]   = np.round((np.sin(np.pi/8)+a)*100)
+# 	amount[flg+1] = np.round((np.sin(np.pi/6)+a)*150)
+# 	amount[flg+2] = np.round((np.sin(np.pi/4)+a)*200)
+# 	amount[flg+3] =np.round((np.sin(np.pi/2.1)+a)*500)
+# 	flg=flg+4	
 # dataset[:,:9] = temp
-# dataset[:,9] = AMOUNT.T
+# dataset[:,9] = amount.T
 # df1 = pd.DataFrame(dataset)
-# df1.to_csv("/home/rishabh/Desktop/DeepLearning/keras/Nucleus/dataset.csv",index = False)
+# df1.to_csv("/home/rishabh/Desktop/DeepLearning/keras/Nucleus/dataset_sin.csv",index = False,header=False)
 ##################### AMOUNT GENERATOR ######################################################
 
-#############################################################################################
-# NAME = np.zeros((19999,1))
-# for i in range(19999):
-# 	rand = np.random.randint(100)
-# 	if(i%3 == 0):
-# 		NAME[i,0] = 54
-# 	else:
-# 		NAME[i,0] = rand
-# dataset[:,:16] = temp
+############################################################################################
+# NAME = np.zeros((20000,1))
+# flg=0
+# for i in range(20000):
+# 	NAME[i] = flg
+# 	flg=flg+1
+# 	if(flg == 10):
+# 		flg=0
+	
+# dataset[:,:10] = temp
 # dataset[:,10] = NAME.T
 # df1 = pd.DataFrame(dataset)
-# df1.to_csv("/home/rishabh/Desktop/DeepLearning/keras/Nucleus/dataset1.csv",index = False)
+# df1.to_csv("/home/rishabh/Desktop/DeepLearning/keras/Nucleus/dataset_sin.csv",index = False,header =  False)
 ##################### BENEFICIARY NAME GENERATOR ############################################
 
 #############################################################################################
 # NAME = np.zeros((20000,1))
+# flg=0
 # for i in range(20000):
-# 	rand = np.random.randint(10)
-# 	if(i%3 == 0):
-# 		NAME[i,0] = 7
-# 	else:
-# 		NAME[i,0] = rand
+# 	NAME[i] = flg
+# 	flg=flg+1
+# 	if(flg == 20):
+# 		flg=0
+
 # dataset[:,:11] = temp
 # dataset[:,11] = NAME.T
 # df1 = pd.DataFrame(dataset)
-# df1.to_csv("/home/rishabh/Desktop/DeepLearning/keras/Nucleus/dataset.csv",index = False)
+# df1.to_csv("/home/rishabh/Desktop/DeepLearning/keras/Nucleus/dataset_sin.csv",index = False,header=False)
 ##################### CITY GENERATOR ########################################################
 
 #############################################################################################
@@ -142,28 +139,28 @@ dataset = np.empty((temp.shape[0],temp.shape[1]))
 
 #############################################################################################
 # BANK = np.zeros((20000,1))
+# flg=0
 # for i in range(20000):
-# 	rand = np.random.randint(5)
-# 	if(i%3 == 0):
-# 		BANK[i,0] = 4
-# 	else:
-# 		BANK[i,0] = rand
-# dataset[:,:15] = temp
-# dataset[:,13] = BANK.T
+# 	BANK[i] = flg
+# 	flg=flg+1
+# 	if(flg == 5):
+# 		flg=0
+# dataset[:,:12] = temp
+# dataset[:,12] = BANK.T
 # df1 = pd.DataFrame(dataset)
-# df1.to_csv("/home/rishabh/Desktop/DeepLearning/keras/Nucleus/dataset.csv",index = False)
+# df1.to_csv("/home/rishabh/Desktop/DeepLearning/keras/Nucleus/dataset_sin.csv",index = False,header=False)
 ##################### BANK GENERATOR #######################################################
 
 ###########################################################################################
-# STAGE = np.zeros((20000,2))
-# for i in range(20000):
-# 	rand = np.random.randint(2)
-# 	if(i%3 == 0):
-# 		STAGE[i,1] = 1
-# 	else:
-# 		STAGE[i,rand] = 1
-# dataset[:,:16] = temp
-# dataset[:,14:16] = STAGE
-# df1 = pd.DataFrame(dataset)
-# df1.to_csv("/home/rishabh/Desktop/DeepLearning/keras/Nucleus/dataset.csv",index = False)
+STAGE = np.zeros((20000,2))
+for i in range(20000):
+	rand = np.random.randint(2)
+	if(i%3 == 0):
+		STAGE[i,1] = 1
+	else:
+		STAGE[i,rand] = 1
+dataset[:,:13] = temp
+dataset[:,13:15] = STAGE
+df1 = pd.DataFrame(dataset)
+df1.to_csv("/home/rishabh/Desktop/DeepLearning/keras/Nucleus/dataset_sin.csv",index = False,header=False)
 ##################### STAGE GENERATOR #######################################################
